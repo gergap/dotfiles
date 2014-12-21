@@ -1,0 +1,16 @@
+# See http://astyle.sourceforge.net/astyle.html for more information
+
+--style=linux
+--indent=spaces=4
+--convert-tabs
+--indent-preprocessor
+--max-instatement-indent=80
+-p #--pad-oper
+-H #--pad-header
+-U #--unpad-paren # unpad all that was not requested above
+-o #--keep-one-line-statements
+-k3 #--align-pointer=name
+#-z1 #--lineend=windows
+-z2 #--lineend=linux
+#-z3 #--lineend=mac
+
