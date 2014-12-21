@@ -1,0 +1,19 @@
+#!/bin/bash
+# Creates all the symlink on new PCs.
+# Note, the vim config is in a separate repo.
+
+DOTFILES=$PWD
+cd ~
+[ -e .gitconfig ] || ln -s $DOTFILES/.gitconfig
+[ -e .gitconfig ] || ln -s $DOTFILES/.git_template
+[ -e .gitconfig ] || ln -s $DOTFILES/.astylerc
+[ -e .gitconfig ] || ln -s $DOTFILES/.revewboardrc
+[ -e .gitconfig ] || ln -s $DOTFILES/.latexmkrc
+
+echo "Should the alieses be added to your .bashrc? (yes/no)"
+read ANSWER
+if [ "$ANSWER" = "yes" ]; then
+    echo "source $DOTFILES/aliases" >> .bashrc
+    echo "aliases have been added."
+fi
+
