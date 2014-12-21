@@ -1,0 +1,40 @@
+[user]
+    name = Gerhard Gappmeier
+    email = gerhard.gappmeier@ascolab.com
+    signingkey = 5AAC50C4
+[diff]
+    tool = kompare
+[difftool]
+    prompt = false
+[merge]
+    tool = kdiff3
+[mergetool]
+    prompt = false
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+[alias]
+    last = log -1 HEAD
+    cl = clone --recursive
+    si = submodule init
+    su= submodule update
+    wdiff = diff --color-words
+    up = pull --rebase
+    ff = pull --ff-only
+    sup = !git stash && git up && git stash pop
+    sff = !git stash && git ff && git stash pop
+    post-review = !post-review --guess-summary --guess-description --username=gergap --parent=master --tracking-branch=origin/master
+    ctags = !~/.git_template/hooks/ctags
+[url "git@git.ascolab.com:"]
+    insteadOf = asc:
+[url "git@git.ascolab.com:"]
+    insteadOf = ssh://git.ascolab.com/repos/
+
+[commit]
+    template = /home/gergap/work/repotools/commit-template
+[push]
+	default = simple
+[init]
+	templatedir = ~/.git_template
