@@ -1,0 +1,7 @@
+This repo just contains my most important dot files to keep them
+in sync across multiple computers.
+This is only useful for me, but you can use this as an example for
+your own config.
+
+Simply clone this repo to ~/dotfiles and symlink the files.
+
