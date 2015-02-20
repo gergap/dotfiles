@@ -33,7 +33,7 @@
     insteadOf = ssh://git.ascolab.com/repos/
 
 [commit]
-    template = /home/gergap/work/repotools/commit-template
+    template = ~/work/repotools/commit-template
 [push]
 	default = simple
 [init]
