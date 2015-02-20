@@ -5,10 +5,10 @@
 DOTFILES=$PWD
 cd ~
 [ -e .gitconfig ] || ln -s $DOTFILES/.gitconfig
-[ -e .gitconfig ] || ln -s $DOTFILES/.git_template
-[ -e .gitconfig ] || ln -s $DOTFILES/.astylerc
-[ -e .gitconfig ] || ln -s $DOTFILES/.reviewboardrc
-[ -e .gitconfig ] || ln -s $DOTFILES/.latexmkrc
+[ -e .git_template ] || ln -s $DOTFILES/.git_template
+[ -e .astylerc ] || ln -s $DOTFILES/.astylerc
+[ -e .reviewboardrc ] || ln -s $DOTFILES/.reviewboardrc
+[ -e .latexmkrc ] || ln -s $DOTFILES/.latexmkrc
 
 echo "Should the alieses be added to your .bashrc? (yes/no)"
 read ANSWER
