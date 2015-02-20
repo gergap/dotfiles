@@ -7,7 +7,7 @@ cd ~
 [ -e .gitconfig ] || ln -s $DOTFILES/.gitconfig
 [ -e .gitconfig ] || ln -s $DOTFILES/.git_template
 [ -e .gitconfig ] || ln -s $DOTFILES/.astylerc
-[ -e .gitconfig ] || ln -s $DOTFILES/.revewboardrc
+[ -e .gitconfig ] || ln -s $DOTFILES/.reviewboardrc
 [ -e .gitconfig ] || ln -s $DOTFILES/.latexmkrc
 
 echo "Should the alieses be added to your .bashrc? (yes/no)"
