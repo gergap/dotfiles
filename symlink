@@ -9,6 +9,7 @@ cd ~
 [ -e .astylerc ] || ln -s $DOTFILES/.astylerc
 [ -e .reviewboardrc ] || ln -s $DOTFILES/.reviewboardrc
 [ -e .latexmkrc ] || ln -s $DOTFILES/.latexmkrc
+[ -e .ycm_extra_conf.py ] || ln -s $DOTFILES/.ycm_extra_conf.py
 
 echo "Should the alieses be added to your .bashrc? (yes/no)"
 read ANSWER
