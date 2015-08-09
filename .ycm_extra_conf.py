@@ -1,32 +1,16 @@
-# This file is NOT licensed under the GPLv3, which is the license for the rest
-# of YouCompleteMe.
+# This file is based on the example from 
+# https://github.com/Valloric/ycmd/blob/master/cpp/ycm/.ycm_extra_conf.py
 #
-# Here's the license text for this file:
+# Modified by: Gerhard Gappmeier
 #
-# This is free and unencumbered software released into the public domain.
+# This version detects the top level git folder and sets the
+# compilation_database_folder automatically. So no further project specific
+# confguration is necessary. It works with all CMake based projects which
+# are maintained using Git. This applies to all the projects in my company
+# as well as many Open Source projects.
 #
-# Anyone is free to copy, modify, publish, use, compile, sell, or
-# distribute this software, either in source code form or as a compiled
-# binary, for any purpose, commercial or non-commercial, and by any
-# means.
-#
-# In jurisdictions that recognize copyright laws, the author or authors
-# of this software dedicate any and all copyright interest in the
-# software to the public domain. We make this dedication for the benefit
-# of the public at large and to the detriment of our heirs and
-# successors. We intend this dedication to be an overt act of
-# relinquishment in perpetuity of all present and future rights to this
-# software under copyright law.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-# OTHER DEALINGS IN THE SOFTWARE.
-#
-# For more information, please refer to <http://unlicense.org/>
+# This file assumes the build directory is ${PROJECT_ROOT}/bld which fits
+# to my 'mk' script. See https://github.com/gergap/mk for more information.
 
 import os
 import ycm_core
@@ -55,10 +39,13 @@ flags = [
 compilation_database_folder = ''
 
 try:
+  # detect git project root
   gitroot = subprocess.check_output('git rev-parse --show-toplevel'.split()).strip().decode("utf-8")
+  # CMake build folder contains the compile_commands.json file
   compilation_database_folder = gitroot + '/bld'
 except:
-  compilation_database_folder = '/home/gergap/work/uasdkc/bld'
+  # hardcoded fallback if we are not inside a git repo
+  compilation_database_folder = '/path/to/your/project'
 
 
 if os.path.exists( compilation_database_folder ):
