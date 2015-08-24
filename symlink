@@ -4,14 +4,27 @@
 
 DOTFILES=$PWD
 cd ~
-[ -e .gitconfig ] || ln -s $DOTFILES/.gitconfig
-[ -e .git_template ] || ln -s $DOTFILES/.git_template
-[ -e .astylerc ] || ln -s $DOTFILES/.astylerc
-[ -e .reviewboardrc ] || ln -s $DOTFILES/.reviewboardrc
-[ -e .latexmkrc ] || ln -s $DOTFILES/.latexmkrc
-[ -e .ycm_extra_conf.py ] || ln -s $DOTFILES/.ycm_extra_conf.py
 
-echo "Should the alieses be added to your .bashrc? (yes/no)"
+function symlink {
+    filename=$1
+    if [ -e $filename ]; then
+        echo "Skipped symlinking $filename, because the file already exists."
+    else
+        echo "Linking ~/$filename to $DOTFILES/$filename."
+        ln -s $DOTFILES/$filename || \
+            { echo "'ln -s $DOTFILES/$filename' failed."; exit 1; }
+    fi
+}
+
+symlink .bashrc
+symlink .gitconfig
+symlink .git_template
+symlink .astylerc
+symlink .reviewboardrc
+symlink .latexmkrc
+symlink .ycm_extra_conf
+
+echo "Should the aliases be added to your .bashrc? (yes/no)"
 read ANSWER
 if [ "$ANSWER" = "yes" ]; then
     echo "source $DOTFILES/aliases" >> .bashrc
