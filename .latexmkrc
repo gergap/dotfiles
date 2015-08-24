@@ -1,4 +1,4 @@
-$pdflatex = 'pdflatex -- -interaction=nonstopmode -shell-escape -synctex=1';
+$pdflatex = 'pdflatex -interaction=nonstopmode -shell-escape -synctex=1 %O %S';
 $pdf_previewer = "start okular";
 $pdf_mode = 1;
 $pdf_update_method = 0;
