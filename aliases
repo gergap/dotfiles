@@ -18,5 +18,9 @@ alias show2="impressive --nologo -T200 -c persistent -g 3840x1080"
 # hexify/unhexify
 alias hexify="xxd -ps"
 alias unhexify="xxd -r -ps"
+
+# start vim always as server for remote controlling
+# this is useful for PDF reverse search with synctex
+alias vi='vim --servername VIM'
 alias vim='vim --servername VIM'
 
