@@ -5,7 +5,5 @@ dir="`git rev-parse --git-dir`"
 trap 'rm -f "$dir/$$.tags"' EXIT
 git ls-files | \
   ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql --fields=+l
-git submodule foreach git ls-files | \
-  ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql --fields=+l
 mv "$dir/$$.tags" "$dir/tags"
 
