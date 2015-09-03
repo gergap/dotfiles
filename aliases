@@ -3,9 +3,6 @@
 # Author: Gerhard Gappmeier
 # Copyright (C) 2012
 
-# tmux alias to force 256c mode
-alias tmux='TERM=xterm-256color tmux'
-
 # copy/paste for commandline
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'

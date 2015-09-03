@@ -38,7 +38,6 @@ fi
 
 # My editor is vim of course
 export EDITOR=/usr/bin/vim
-export TERM=rxvt-unicode-256color
 # load git bash completion
 source /usr/share/bash-completion/completions/git
 source /usr/share/git/git-prompt.sh

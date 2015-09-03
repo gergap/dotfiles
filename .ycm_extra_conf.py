@@ -23,6 +23,7 @@ flags = [
 '-Wall',
 '-Wextra',
 #'-Werror',
+'-I/usr/share/qt4'
 ]
 
 
