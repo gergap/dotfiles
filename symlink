@@ -22,12 +22,15 @@ symlink .git_template
 symlink .astylerc
 symlink .reviewboardrc
 symlink .latexmkrc
-symlink .ycm_extra_conf
+symlink .ycm_extra_conf.py
+symlink .tmux.conf
 
-echo "Should the aliases be added to your .bashrc? (yes/no)"
-read ANSWER
-if [ "$ANSWER" = "yes" ]; then
-    echo "source $DOTFILES/aliases" >> .bashrc
-    echo "aliases have been added."
-fi
+# This makes no sense anymore because .bashrc also gets symlinked,
+# and contains already my aliases
+#echo "Should the aliases be added to your .bashrc? (yes/no)"
+#read ANSWER
+#if [ "$ANSWER" = "yes" ]; then
+#    echo "source $DOTFILES/aliases" >> .bashrc
+#    echo "aliases have been added."
+#fi
 
