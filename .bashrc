@@ -40,7 +40,13 @@ fi
 export EDITOR=/usr/bin/vim
 # load git bash completion
 source /usr/share/bash-completion/completions/git
-source /usr/share/git/git-prompt.sh
+if [ -f /usr/share/git/git-prompt.sh ]; then
+    # gentoo path
+    source /usr/share/git/git-prompt.sh
+elif [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    # debian path
+    source /usr/lib/git-core/git-sh-prompt
+fi
 # Cool trick to show current git branch in the command prompt
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$(__git_ps1 " (%s)") \$\[\033[00m\] '
 # set english locale to get english error messages from compiler
