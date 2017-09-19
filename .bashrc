@@ -73,6 +73,31 @@ source $HOME/dotfiles/aliases
 
 
 # Euros
-export EUROS_ROOT=/home/gergap/work/euros-cmake
+export EUROS_ROOT=/home/gergap/work/devel/euros-cmake
 export PATH=/home/gergap/work/qemu-linaro/arm-softmmu:$PATH
+
+function _update_ps1() {
+   PS1="$(~/powerline-shell.py $? 2> /dev/null)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+alias debug_xmc="cgdb -d /home/gergap/toolchain/install-native/bin/arm-none-eabi-gdb -nh --command=debug_init"
+alias certdump="openssl x509 -inform der -text -noout -in "
+
+export AMDAPPSDKROOT="/home/gergap/AMDAPPSDK-3.0"
+export OPENCL_VENDOR_PATH="/home/gergap/AMDAPPSDK-3.0/etc/OpenCL/vendors"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$AMDAPPSDKROOT/lib/x86_64/sdk
+
+export TOOLCHAIN_ROOT=/home/gergap/work/toolchains/gcc-arm-none-eabi-5_4-2016q3
+export EMBOS_DIR=/home/gergap/work/toolchains/embos
+export EMBOSIP_DIR=/home/gergap/work/toolchains/embosip
+export EMBSTUDIO_DIR=/usr/share/segger_embedded_studio_3.10h
+
+export CI_DIR=/home/gergap/work/devel/ci-build
+export CI_SCRIPTS_DIR=$CI_DIR/scripts
+export CI_BUILD_DIR=$HOME/tmp/buildbot
+export CI_UPLOAD_RESULTS=0
 
