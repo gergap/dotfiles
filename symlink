@@ -26,6 +26,7 @@ symlink .ycm_extra_conf.py
 symlink .tmux.conf
 symlink .mutt
 symlink .muttrc
+symlink .mailcap
 
 # This makes no sense anymore because .bashrc also gets symlinked,
 # and contains already my aliases

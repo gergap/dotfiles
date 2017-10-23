@@ -27,12 +27,15 @@ set sort_aux        = reverse-last-date-received					# Sort mails in reverse dat
 set sort            = threads							            # Sort by threads
 set uncollapse_jump = yes											# Don't jump to next unread message when a thread is collapsed
 set metoo=yes
+# setup html viewing using ~/.mailcap for html mails
 auto_view text/html
+# prefer text/plain over text/html if both is available
+alternative_order text/plain text/html
 
 # configure charset
-set charset="utf-8"
+#set charset="utf-8"
 #set locale=`echo "${LC_ALL:-${LC_TIME:-${LANG}}}"`
-set send_charset="us-ascii:iso-8859-15:utf-8"
+#set send_charset="us-ascii:iso-8859-15:utf-8"
 #set file_charset="us-ascii:iso-8859-15:utf-8"
 
 # configure muttprint
