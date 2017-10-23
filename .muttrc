@@ -4,7 +4,12 @@ set from         = "gerhard.gappmeier@ascolab.com"
 set use_from     = yes
 set edit_headers = yes
 set fast_reply   = yes
-set editor       = "vim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
+#set editor       = "vim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
+set editor       = "vim -c 'set spell spelllang=de,en' -c 'startinsert' -c 'set tw=80 et' -c 'set wrap' '+/^$'"
+set signature    = "~/.mutt/signature"
+set ispell       = "aspell -e -c"
+set attribution  = "On %d, %n wrote:"
+set forward_format = "[%a: %s]"
 
 # Set up preview pane for messages
 set pager_index_lines = 10 	# number of index lines to show
@@ -18,17 +23,41 @@ set markers           = no 	# no ugly plus signs
 set index_format    = '%4C [%Z] %{%D} %-25.25L (%?l?%4l&%4c?) %s'	# Customize the messaage index display
 set sort_browser    = alpha											# Sort entries in the file browser
 set sort_aux        = reverse-last-date-received					# Sort mails in reverse date order (threads)
-set sort            = reverse-date-received							# Sort with the newest at the top
+#set sort            = reverse-date-received							# Sort with the newest at the top
+set sort            = threads							            # Sort by threads
 set uncollapse_jump = yes											# Don't jump to next unread message when a thread is collapsed
+set metoo=yes
+auto_view text/html
+
+# configure charset
+set charset="utf-8"
+#set locale=`echo "${LC_ALL:-${LC_TIME:-${LANG}}}"`
+set send_charset="us-ascii:iso-8859-15:utf-8"
+#set file_charset="us-ascii:iso-8859-15:utf-8"
+
+# configure muttprint
+# see http://www.linux-community.de/Internal/Artikel/Print-Artikel/LinuxUser/2004/09/muttprint
+set print_command = "muttprint"
+set print         = yes
+set print_split
+macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>"
+macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
 
 # load passwords
 source "gpg -d ~/.mutt/passwords.gpg |"
 # load PGP Settings
 source ~/.mutt/pgp.muttrc
+# load solarized colors
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
+# aliases
+source ~/.mutt/aliases
 
 # SMTP Settings
-set sendmail="/usr/sbin/ssmtp"
-#set smtp_url="smtps://gerhard.gappmeier@smtp.ascolab.com:465"
+#set sendmail="/usr/sbin/ssmtp"
+set smtp_url="smtp://gerhard.gappmeier@smtp.ascolab.com:587"
 
 # IMAP Config
 set spoolfile="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
@@ -57,8 +86,3 @@ set net_inc=5"
 
 bind index G imap-fetch-mail
 
-# auto created aliases:
-alias gergap Gerhard Gappmeier <gerhard.gappmeier@ascolab.com>
-alias uwe.steinkrauss Uwe Steinkrauss <uwe.steinkrauss@ascolab.com>
-alias christian.zugfil Christian Zugfil <christian.zugfil@ascolab.com>
-alias hannes.mezger Hannes Mezger <hannes.mezger@ascolab.com>
