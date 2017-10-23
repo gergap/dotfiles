@@ -1,0 +1,10 @@
+#!/bin/bash
+# Parses compiler error lines like e.g. "src/tools/xml2bin2/bin_output.c:87:"
+# and opens the file at that location in vim.
+# The same works for grep output.
+arg="$1"
+file=`echo $arg | awk -F ":" '{print $1;}'`
+line=`echo $arg | awk -F ":" '{print $2;}'`
+
+vim $file +$line
+
