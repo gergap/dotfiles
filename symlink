@@ -24,6 +24,8 @@ symlink .reviewboardrc
 symlink .latexmkrc
 symlink .ycm_extra_conf.py
 symlink .tmux.conf
+symlink .mutt
+symlink .muttrc
 
 # This makes no sense anymore because .bashrc also gets symlinked,
 # and contains already my aliases

@@ -1,0 +1,64 @@
+# Basic Options
+set realname     = "Gerhard Gappmeier"
+set from         = "gerhard.gappmeier@ascolab.com"
+set use_from     = yes
+set edit_headers = yes
+set fast_reply   = yes
+set editor       = "vim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
+
+# Set up preview pane for messages
+set pager_index_lines = 10 	# number of index lines to show
+set pager_context     = 3     # number of context lines to show
+set pager_stop        = yes   # don't go to next message automatically
+set menu_scroll       = yes   # scroll in menus
+set tilde             = yes   # show tildes like in vim
+set markers           = no 	# no ugly plus signs
+
+# Look and feel -----------------------------------------------------------------
+set index_format    = '%4C [%Z] %{%D} %-25.25L (%?l?%4l&%4c?) %s'	# Customize the messaage index display
+set sort_browser    = alpha											# Sort entries in the file browser
+set sort_aux        = reverse-last-date-received					# Sort mails in reverse date order (threads)
+set sort            = reverse-date-received							# Sort with the newest at the top
+set uncollapse_jump = yes											# Don't jump to next unread message when a thread is collapsed
+
+# load passwords
+source "gpg -d ~/.mutt/passwords.gpg |"
+# load PGP Settings
+source ~/.mutt/pgp.muttrc
+
+# SMTP Settings
+set sendmail="/usr/sbin/ssmtp"
+#set smtp_url="smtps://gerhard.gappmeier@smtp.ascolab.com:465"
+
+# IMAP Config
+set spoolfile="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
+set folder="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
+set record="=Sent"
+set postponed="=Drafts"
+set trash="=Trash
+# activate TLS if available on the server
+set ssl_starttls=yes
+# always use SSL when connecting to a server
+set ssl_force_tls=yes
+# Don't wait to enter mailbox manually
+unset imap_passive
+# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+set imap_check_subscribed
+# Reduce polling frequency to a sane level
+set mail_check=60
+# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+set timeout=10
+# keep a cache of headers for faster loading (1.5.9+?)
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+# Display download progress every 5K
+set net_inc=5"
+
+bind index G imap-fetch-mail
+
+# auto created aliases:
+alias gergap Gerhard Gappmeier <gerhard.gappmeier@ascolab.com>
+alias uwe.steinkrauss Uwe Steinkrauss <uwe.steinkrauss@ascolab.com>
+alias christian.zugfil Christian Zugfil <christian.zugfil@ascolab.com>
+alias hannes.mezger Hannes Mezger <hannes.mezger@ascolab.com>
