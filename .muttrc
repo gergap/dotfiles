@@ -31,6 +31,8 @@ set metoo=yes
 auto_view text/html
 # prefer text/plain over text/html if both is available
 alternative_order text/plain text/html
+#set new_mail_command="notify-send --icon='/home/gergap/Pictures/neomutt.png' 'New Email' '%n new messages, %u unread.' &"
+set new_mail_command="/home/gergap/.mutt/newmailnotify.sh '%n new messages, %u unread.' &"
 
 # configure charset
 #set charset="utf-8"
