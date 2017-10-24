@@ -101,3 +101,9 @@ color body brightblue default "^@@ .*"
 # map G to fetch IMAP instead POP
 bind index G imap-fetch-mail
 
+# some macros for attchment saving
+# save attchment in default path with option to modify path
+macro attach W <save-entry><kill-line>/home/gergap/attachments/
+# save attchament (ical file) to ~/calcurse
+macro attach C <save-entry><kill-line>/home/gergap/.calcurse/import/<enter>
+
