@@ -1,5 +1,20 @@
-alias gergap Gerhard Gappmeier <gerhard.gappmeier@ascolab.com>
-alias uwe.steinkrauss Uwe Steinkrauss <uwe.steinkrauss@ascolab.com>
+# ascolab
 alias christian.zugfil Christian Zugfil <christian.zugfil@ascolab.com>
+alias florian.balling Florian Balling <florian.balling@ascolab.com>
+alias frank.fischer Frank Fischer <frank.fischer@ascolab.com>
+alias georg.zechel Georg Zechel <georg.zechel@ascolab.com>
+alias gergap Gerhard Gappmeier <gerhard.gappmeier@ascolab.com>
 alias hannes.mezger Hannes Mezger <hannes.mezger@ascolab.com>
-alias -group seapi <A.Kersten@t-systems.com> <andre.braunmandl@bsi.bund.de> <gerhard.gappmeier@ascolab.com> <christian.zugfil@ascolab.com> <alexander.wild@nxp.com> <frank.stamm@nxp.com> <fabian.mackenthun@nxp.com> <georg.menges@nxp.com> <Christian.Stengel@t-systems.com> <Lars.Ranke@t-systems.com> <Holger.Frank@t-systems.com> <Burkhard.Fuchs@t-systems.com>
+alias juergen.boxberger Jürgen Boxberger <juergen.boxberger@unifiedautomation.com>
+alias matthias.damm Matthias Damm <matthias.damm@ascolab.com>
+alias matthias.isele Matthias Isele <matthias.isele@ascolab.com>
+alias thomas.kugler Thomas Kugler <thomas.kugler@ascolab.com>
+alias uwe.steinkrauss Uwe Steinkrauss <uwe.steinkrauss@ascolab.com>
+
+# others
+alias chrisian.hock Chrisian Hock <chrisian.hock@siemens.com>
+
+# Groups
+alias -group seapi seapi <A.Kersten@t-systems.com> <andre.braunmandl@bsi.bund.de> <gerhard.gappmeier@ascolab.com> <christian.zugfil@ascolab.com> <alexander.wild@nxp.com> <frank.stamm@nxp.com> <fabian.mackenthun@nxp.com> <georg.menges@nxp.com> <Christian.Stengel@t-systems.com> <Lars.Ranke@t-systems.com> <Holger.Frank@t-systems.com> <Burkhard.Fuchs@t-systems.com>
+alias -group ascolab ascolab christian.zufil florian.balling frank.fischer georg.zechel gergap hannes.mezgermatthias.damm matthias.isele thomas.kugler uwe.steinkrauss
+alias TimMcAllister Tim McAllister <TMcAllister@mocana.com>
