@@ -26,7 +26,8 @@ set sort_aux        = reverse-last-date-received					# Sort mails in reverse dat
 #set sort            = reverse-date-received							# Sort with the newest at the top
 set sort            = threads							            # Sort by threads
 set uncollapse_jump = yes											# Don't jump to next unread message when a thread is collapsed
-set metoo=yes
+set strict_threads  = yes
+set metoo           = yes
 # setup html viewing using ~/.mailcap for html mails
 auto_view text/html
 # prefer text/plain over text/html if both is available
