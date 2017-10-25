@@ -66,29 +66,29 @@ source ~/.mutt/aliases
 set smtp_url="smtp://gerhard.gappmeier@smtp.ascolab.com:587"
 
 # IMAP Config
-set spoolfile="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
-set folder="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
-set record="=Sent"
-set postponed="=Drafts"
-set trash="=Trash
-# activate TLS if available on the server
-set ssl_starttls=yes
-# always use SSL when connecting to a server
-set ssl_force_tls=yes
-# Don't wait to enter mailbox manually
-unset imap_passive
-# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
-set imap_check_subscribed
-# Reduce polling frequency to a sane level
-set mail_check=60
-# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
-set timeout=10
-# keep a cache of headers for faster loading (1.5.9+?)
-set header_cache="~/.mutt/cache/headers"
-set message_cachedir = "~/.mutt/cache/bodies"
-set certificate_file = "~/.mutt/certificates"
-# Display download progress every 5K
-set net_inc=5"
+#set spoolfile="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
+#set folder="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
+#set record="=Sent"
+#set postponed="=Drafts"
+#set trash="=Trash
+## activate TLS if available on the server
+#set ssl_starttls=yes
+## always use SSL when connecting to a server
+#set ssl_force_tls=yes
+## Don't wait to enter mailbox manually
+#unset imap_passive
+## Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+#set imap_check_subscribed
+## Reduce polling frequency to a sane level
+#set mail_check=60
+## And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+#set timeout=10
+## keep a cache of headers for faster loading (1.5.9+?)
+#set header_cache="~/.mutt/cache/headers"
+#set message_cachedir = "~/.mutt/cache/bodies"
+#set certificate_file = "~/.mutt/certificates"
+## Display download progress every 5K
+#set net_inc=5"
 
 # diff highlighting in mails, useful for git patches
 color body green default "^diff \-.*"
@@ -98,6 +98,15 @@ color body green default "^[\+]{3} .*"
 color body cyan default "^[\+][^\+]+.*"
 color body red  default "^\-[^\-]+.*"
 color body brightblue default "^@@ .*"
+
+# IMAP: offlineimap
+set folder = "~/Mail"
+source ~/.mutt/mailboxes
+set spoolfile = "+ascolab/INBOX"
+set record = "+ascolab/Sent"
+set postponed = "+ascolab/Drafts"
+# mail poll requency
+set timeout=10
 
 # map G to fetch IMAP instead POP
 bind index G imap-fetch-mail
