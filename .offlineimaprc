@@ -1,0 +1,76 @@
+[general]
+# List of accounts to be synced, separated by a comma.
+accounts = ascolab
+# Path to file with arbitrary Python code to be loaded
+pythonfile = ~/.offlineimap.py
+# how many concurrent syncs
+maxsyncaccounts=1
+
+[Account ascolab]
+# Identifier for the local repository; e.g. the maildir to be synced via IMAP.
+localrepository = ascolab-local
+# Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
+remoterepository = ascolab-remote
+# background sync
+autorefresh=0.5
+quick=10
+
+[Account gmx]
+# Identifier for the local repository; e.g. the maildir to be synced via IMAP.
+localrepository = gmx-local
+# Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
+remoterepository = gmx-remote
+# background sync
+autorefresh=0.5
+quick=10
+
+[Repository ascolab-local]
+# OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.
+type = Maildir
+# Where should the mail be placed?
+localfolders = ~/Mail/ascolab
+
+[Repository ascolab-remote]
+# Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
+type = IMAP
+remotehost = imap.ascolab.com
+remoteuser = gerhard.gappmeier
+# Decrypt and read the encrypted password
+remotepasseval = get_pass("ascolab")
+# configure CA root for TLS
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+#folderfilter = lambda folder: folder in ['INBOX']
+folderfilter = lambda folder: folder not in ['INBOX/Trash', 'INBOX/Papierkorb', 'INBOX/Junk', 'INBOX/Spam', 'INBOX/Archives', 'INBOX/2005', 'INBOX/2008', 'INBOX/2009', 'INBOX/2010', 'INBOX/2011', 'INBOX/2012']
+keepalive = 60
+holdconnectionopen=yes
+idlefolders=["INBOX"]
+
+[Repository gmx-local]
+# OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.
+type = Maildir
+# Where should the mail be placed?
+localfolders = ~/Mail/gmx
+
+[Repository gmx-remote]
+# Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
+type = IMAP
+remotehost = imap.gmx.de
+remoteuser = gappy1502@gmx.net
+# Decrypt and read the encrypted password
+remotepasseval = get_pass("gmx")
+# configure CA root for TLS
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+#folderfilter = lambda folder: folder in ['INBOX']
+folderfilter = lambda folder: folder not in ['INBOX/Trash', 'INBOX/Spam', 'INBOX/Junk']
+keepalive = 60
+holdconnectionopen=yes
+idlefolders=["INBOX"]
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
