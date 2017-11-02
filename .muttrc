@@ -121,3 +121,7 @@ macro attach W <save-entry><kill-line>/home/gergap/attachments/
 # save attchament (ical file) to ~/calcurse
 macro attach C <save-entry><kill-line>/home/gergap/.calcurse/import/<enter>
 
+# mailing lists
+subscribe cmake
+subscribe openssl-users
+
