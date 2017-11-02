@@ -1,0 +1,4 @@
+#!/bin/bash
+TTY=`tty`
+echo "dashboard -output $TTY" > ~/.dashboard.gdb
+

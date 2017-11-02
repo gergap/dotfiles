@@ -1,0 +1,9 @@
+:set hls
+:set winsplit=top_big
+:map <F10> inext<cr><esc>
+:map <F11> istep<cr><esc>
+:map <F12> ifin<cr><esc>
+:imap <F10> next<cr><esc>
+:imap <F11> step<cr><esc>
+:imap <F12> fin<cr><esc>
+
