@@ -1,6 +1,6 @@
 [general]
 # List of accounts to be synced, separated by a comma.
-accounts = ascolab
+accounts = ascolab, gmx
 # Path to file with arbitrary Python code to be loaded
 pythonfile = ~/.offlineimap.py
 # how many concurrent syncs
@@ -66,6 +66,7 @@ keepalive = 60
 holdconnectionopen=yes
 idlefolders=["INBOX"]
 
+# create mailbox configs for mutt mail client
 [mbnames]
 enabled = yes
 filename = ~/.mutt/mailboxes
