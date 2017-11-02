@@ -112,6 +112,8 @@ mailboxes +archive +archive/2007 +archive/2008 +archive/2009 +archive/2010 +arch
 
 # map G to fetch IMAP instead POP
 bind index G imap-fetch-mail
+bind pager <up> previous-line
+bind pager <down> next-line
 
 # some macros for attchment saving
 # save attchment in default path with option to modify path
