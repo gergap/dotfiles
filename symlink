@@ -27,6 +27,10 @@ symlink .tmux.conf
 symlink .mutt
 symlink .muttrc
 symlink .mailcap
+symlink .cgdb
+symlink .gdbinit
+symlink .gdbinit_dashboard
+symlink dashboard
 
 # This makes no sense anymore because .bashrc also gets symlinked,
 # and contains already my aliases
