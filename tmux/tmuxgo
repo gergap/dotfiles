@@ -66,12 +66,15 @@ tmux set-window-option -t $SESSION:2 automatic-rename off
 
 # compile
 tmux new-window    -t $SESSION:3 -k -n compile "cd ~/work; bash"
-tmux set-window-option -t $SESSION:4 monitor-silence 5
-tmux set-window-option -t $SESSION:4 automatic-rename off
+tmux set-window-option -t $SESSION:3 monitor-silence 5
+tmux set-window-option -t $SESSION:3 automatic-rename off
 
 # debug
 tmux new-window    -t $SESSION:4 -k -n debug "cd ~/work; bash"
-tmux set-window-option -t $SESSION:3 automatic-rename off
+tmux set-window-option -t $SESSION:4 automatic-rename off
+# gdb dashboard
+tmux split-window -h -l 80 -t $SESSION:4 "cd ~/work; bash --init-file ~/dashboard"
+tmux select-pane -L
 
 # offlineimap
 tmux new-window    -t $SESSION:8 -k -n imap offlineimap
