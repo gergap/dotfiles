@@ -20,7 +20,9 @@ set tilde             = yes   # show tildes like in vim
 set markers           = no 	# no ugly plus signs
 
 # Look and feel -----------------------------------------------------------------
-set index_format    = '%4C [%Z] %{%D} %-25.25L (%?l?%4l&%4c?) %s'	# Customize the messaage index display
+#set index_format    = '%4C [%Z] %{nicedate %s|} %-25.25L (%?l?%4l&%4c?) %s'	# Customize the messaage index display
+set index_format    = '%4C [%Z] %{%a %d.%m.%Y %T} %-25.25L (%?l?%4l&%4c?) %?H?[%H] ? %s'	# Customize the messaage index display
+#set index_format    = 'nicedate %s "%d.%m.%Y" | %s'	# Customize the messaage index display
 set sort_browser    = alpha											# Sort entries in the file browser
 set sort_aux        = reverse-last-date-received					# Sort mails in reverse date order (threads)
 #set sort            = reverse-date-received							# Sort with the newest at the top
