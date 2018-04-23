@@ -1346,6 +1346,26 @@ class Registers(Dashboard.Module):
             pass
         return str(value)
 
+class Locals(Dashboard.Module):
+    """Show local variables. """ 
+
+    def label(self):
+        return 'Locals'
+
+    def lines(self, term_width, style_changed):
+        out = []
+        frame = gdb.selected_frame()
+        block = frame.block()
+        while block:
+            if (not block.is_global):
+                for symbol in block:
+                    if (symbol.is_argument or symbol.is_variable):
+                        name = symbol.name
+                        value = symbol.value(frame)
+                        out.append('{} = {}'.format(name, value))
+            block = block.superblock
+        return out
+
 class Threads(Dashboard.Module):
     """List the currently available threads."""
 
@@ -1475,3 +1495,4 @@ python Dashboard.start()
 # Local Variables:
 # mode: python
 # End:
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
