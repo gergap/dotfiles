@@ -8,6 +8,8 @@ source ~/.dashboard.gdb
 
 # disable source view in dashboard
 dashboard source
+dashboard history
+dashboard registers
 
 # dashboard aliases
 alias w=dashboard expressions watch
