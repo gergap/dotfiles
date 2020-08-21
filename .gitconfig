@@ -3,7 +3,7 @@
     email = gerhard.gappmeier@ascolab.com
     signingkey = 5AAC50C4
 [diff]
-    tool = kompare
+    tool = vimdiff
 [difftool]
     prompt = false
 [merge]
