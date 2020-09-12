@@ -1,3 +1,4 @@
-text/html;                      links %s; nametemplate=%s.html
-text/html;                      elinks -dump %s; nametemplate=%s.html; copiousoutput
+text/html;                      /usr/bin/firefox %s >/dev/null 2>&1; needsterminal
+text/html;                      /usr/bin/elinks -dump %s; nametemplate=%s.html; copiousoutput
+application/msword;             /usr/bin/antiword %s; copiousoutput
 
