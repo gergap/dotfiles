@@ -3,7 +3,7 @@
     email = gerhard.gappmeier@ascolab.com
     signingkey = 5AAC50C4
 [diff]
-    tool = kompare
+    tool = vimdiff
 [difftool]
     prompt = false
 [merge]
@@ -16,6 +16,7 @@
     branch = auto
     ui = true
 [alias]
+    i = !~/bash_scripts/gitinit
     last = log -1 HEAD
     cl = clone --recursive
     si = submodule init
@@ -27,6 +28,8 @@
     sff = !git stash && git ff && git stash pop
     post-review = !post-review --guess-summary --guess-description --username=gergap --parent=master --tracking-branch=origin/master
     ctags = !~/.git_template/hooks/ctags
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    st = status -uno
 [url "git@git.ascolab.com:"]
     insteadOf = asc:
 [url "git@git.ascolab.com:"]
@@ -39,3 +42,5 @@
     recurseSubmodules = check
 [init]
     templatedir = ~/.git_template
+[pull]
+	ff = only
