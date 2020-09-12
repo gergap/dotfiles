@@ -21,3 +21,4 @@ alias unhexify="xxd -r -ps"
 alias vi='vim --servername VIM'
 alias vim='vim --servername VIM'
 
+alias cbgen='cmake -G "CodeBlocks - Unix Makefiles" .'
