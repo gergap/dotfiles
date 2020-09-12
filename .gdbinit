@@ -1,5 +1,5 @@
 # I prefer intel asm format over AT&T
-set disassembly-flavor intel
+#set disassembly-flavor intel
 
 # Source GNU Dashboard
 source ~/.gdbinit_dashboard
@@ -36,6 +36,7 @@ document brestore
   restore breakpoints saved by bsave
 end
 
+set breakpoint pending on
 set auto-load safe-path /
 
 # configure build-id symbols
@@ -53,23 +54,25 @@ set auto-load safe-path /
 #set auto-load safe-path $debugdir:$datadir/auto-load:/home/gergap/.gdb-autoload
 
 #source ~/.gdb/opcuaprinters/uastring.py
-#python
-#import sys
+python
+import sys
 #sys.path.insert(0, '/home/gergap/gdb-ua-prettyprinter')
 #from opcua import register_uaprinters
 #register_uaprinters()
 
 # Embedded Stack
-#sys.path.insert(0, '/home/gergap/work/devel/embeddedstack/gdb/prettyprinter')
+sys.path.insert(0, '/home/gergap/work/embeddedstack/gdb/prettyprinter')
 #from opcua import register_uaprinters
 #register_uaprinters()
+from noderef import register_printers
+register_printers()
 
 # install Qt4 pretty printers
 #sys.path.insert(0, '/usr/share/apps/kdevgdb/printers')
 #from qt4 import register_qt4_printers
 #register_qt4_printers (None)
 
-#end
+end
 
 # FM4 commands
 #target remote :2331
