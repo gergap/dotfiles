@@ -1,0 +1,20 @@
+# general account info
+set from = "gappy1502@gmx.net"
+set realname = "Gerhard Gappmeier"
+set signature = "~/.mutt/signature_gmx"
+
+# SMTP Settings
+set smtp_url  = "smtp://gappy1502@gmx.net@mail.gmx.net:587"
+set smtp_pass = `pass show E-Mail/gappy1502@gmx.net 2>/dev/null`
+
+# Locla MailDir Config
+set mbox_type = Maildir
+unset folder
+set folder      = "~/.mail/gmx"
+set spoolfile   = "~/.mail/gmx/INBOX"
+set record      = "~/.mail/gmx/Sent"
+set postponed   = "~/.mail/gmx/Drafts"
+set trash       = "~/.mail/gmx/Trash"
+unset header_cache
+unset message_cachedir
+

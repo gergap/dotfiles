@@ -1,0 +1,20 @@
+# general account info
+set from = "gerhard.gappmeier@ascolab.com"
+set realname = "Gerhard Gappmeier"
+set signature = "~/.mutt/signature_ascolab"
+
+# SMTP Settings
+set smtp_url    = "smtp://gerhard.gappmeier@smtp.ascolab.com:587"
+set smtp_pass   = `pass show E-Mail/gerhard.gappmeier@ascolab.com 2>/dev/null`
+
+# Locla MailDir Config
+set mbox_type = Maildir
+unset folder
+set folder      = "~/.mail/ascolab"
+set spoolfile   = "~/.mail/ascolab/INBOX"
+set record      = "~/.mail/ascolab/Sent"
+set postponed   = "~/.mail/ascolab/Drafts"
+set trash       = "~/.mail/ascolab/Trash"
+unset header_cache
+unset message_cachedir
+
