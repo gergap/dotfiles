@@ -508,7 +508,7 @@ class Dashboard(gdb.Command):
                         dashboard.redisplay()
                     else:
                         status = 'enabled' if info.enabled else 'disabled'
-                        print('{} module {}'.format(module.name, status))
+                        #print('{} module {}'.format(module.name, status))
                 else:
                     Dashboard.err('Wrong argument "{}"'.format(arg))
             doc_brief = 'Configure the {} module.'.format(self.name)
