@@ -2,6 +2,6 @@
 set -e
 PATH="/usr/local/bin:$PATH"
 trap 'rm -f "$$.tags"' EXIT
-git ls-files | \
+git ls-files --recurse-submodules | \
   ctags --tag-relative -L - -f"$$.tags" --languages=-javascript,sql --fields=+l
 mv "$$.tags" "tags"
