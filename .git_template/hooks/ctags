@@ -6,4 +6,6 @@ trap 'rm -f "$dir/$$.tags"' EXIT
 git ls-files | \
   ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql --fields=+l
 mv "$dir/$$.tags" "$dir/tags"
-
+git ls-files | grep '\.[ch]$' > cscope.files
+[ -e cscope.out ] && rm cscope.out
+cscope -b
