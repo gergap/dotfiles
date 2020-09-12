@@ -27,11 +27,8 @@
     sff = !git stash && git ff && git stash pop
     post-review = !post-review --guess-summary --guess-description --username=gergap --parent=master --tracking-branch=origin/master
     ctags = !~/.git_template/hooks/ctags
-[url "git@git.ascolab.com:"]
-    insteadOf = asc:
-[url "git@git.ascolab.com:"]
-    insteadOf = ssh://git.ascolab.com/repos/
-
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    st = status -uno
 [commit]
     template = ~/work/repotools/commit-template
 [push]
@@ -39,3 +36,11 @@
     recurseSubmodules = check
 [init]
     templatedir = ~/.git_template
+[pull]
+    ff = only
+[sendemail]
+    smtpserver = smtp.gmx.net
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = "gappy1502@gmx.net"
+    suppresscc = self
