@@ -112,8 +112,8 @@ folder-hook $folder 'source ~/.mutt/account.local.gmx'
 source ~/.mutt/account.local.ascolab
 folder-hook $folder 'source ~/.mutt/account.local.ascolab'
 # macro for switching accounts
-macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.gmx<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab<enter><change-folder>!<enter>'
+macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.gmx<enter><change-folder>!<enter><check-stats>'
+macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab<enter><change-folder>!<enter><check-stats>'
 #macro index <f2> '<change-folder>~/Mail/gmx/INBOX<enter>'
 #macro index <f3> '<change-folder>~/Mail/ascolab/INBOX<enter>'
 
