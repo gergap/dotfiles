@@ -10,11 +10,14 @@ set smtp_pass   = `pass show E-Mail/gerhard.gappmeier@ascolab.com 2>/dev/null`
 # Locla MailDir Config
 set mbox_type = Maildir
 unset folder
-set folder      = "~/.mail/ascolab"
-set spoolfile   = "~/.mail/ascolab/INBOX"
-set record      = "~/.mail/ascolab/Sent"
-set postponed   = "~/.mail/ascolab/Drafts"
-set trash       = "~/.mail/ascolab/Trash"
+set folder      = "~/Mail/ascolab"
+set spoolfile   = "~/Mail/ascolab/INBOX"
+set record      = "~/Mail/ascolab/Sent"
+set postponed   = "~/Mail/ascolab/Drafts"
+set trash       = "~/Mail/ascolab/Trash"
 unset header_cache
 unset message_cachedir
 
+# Update mailboxes for sidebar
+unmailboxes *
+mailboxes =INBOX =Sent =Drafts =Spam =Trash =Rechnungen =Sunny =Telekom =Steuer =Private =Patches

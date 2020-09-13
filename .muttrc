@@ -41,7 +41,7 @@ auto_view text/html
 # prefer text/plain over text/html if both is available
 alternative_order text/plain text/html
 #set new_mail_command="notify-send --icon='/home/gergap/Pictures/neomutt.png' 'New Email' '%n new messages, %u unread.' &"
-set new_mail_command="/home/gergap/.mutt/newmailnotify.sh '%n new messages, %u unread.' &"
+#set new_mail_command="/home/gergap/.mutt/newmailnotify.sh '%n new messages, %u unread.' &"
 
 # configure charset
 #set charset="utf-8"
@@ -60,6 +60,13 @@ macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
 #macro index $ "<sync-mailbox><shell-escape>mbsync -a<enter>"
 macro index,pager \co "<pipe-message> urlscan -c -d -H -s<Enter>" "call urlscan to extract URLs out of a message"
 macro attach,compose \co "<pipe-entry> urlscan -c -d -H -s<Enter>" "call urlscan to extract URLs out of a message"
+
+macro index <F8> \
+      "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+      "search mail (using notmuch)"
+macro index <F9> \
+      "<enter-command>unset wait_key<enter><pipe-message>~/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+      "search and reconstruct owning thread (using notmuch)"
 
 # load passwords
 source "gpg -d ~/.mutt/passwords.gpg |"
@@ -107,6 +114,8 @@ folder-hook $folder 'source ~/.mutt/account.local.ascolab'
 # macro for switching accounts
 macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.gmx<enter><change-folder>!<enter>'
 macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab<enter><change-folder>!<enter>'
+#macro index <f2> '<change-folder>~/Mail/gmx/INBOX<enter>'
+#macro index <f3> '<change-folder>~/Mail/ascolab/INBOX<enter>'
 
 # Reduce polling frequency to a sane level
 set mail_check=60
@@ -120,6 +129,7 @@ set certificate_file = "~/.mutt/certificates"
 set net_inc=5"
 
 # some highlight in the message index
+#               fgcolor     bgcolor     flags
 color index     black       default     ~D  # deleted
 color index     default     yellow      ~T  # tagged
 color index     default     red         ~F  # flagged
@@ -141,4 +151,8 @@ color body brightblue default "^@@ .*"
 macro attach W <save-entry><kill-line>/home/gergap/attachments/
 # save attchament (ical file) to ~/calcurse
 macro attach C <save-entry><kill-line>/home/gergap/.calcurse/import/<enter>
+
+source ~/.mutt/sidebar
+
+color indicator black cyan
 
