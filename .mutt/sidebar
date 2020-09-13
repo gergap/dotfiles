@@ -106,10 +106,10 @@ color sidebar_highlight black color8
 color sidebar_divider color8 black
 #
 # Color to give mailboxes containing flagged mail
-color sidebar_flagged red black
+color sidebar_flagged red default
 #
 # Color to give mailboxes containing new mail
-color sidebar_new green black
+color sidebar_new green default
 
 # --------------------------------------------------------------------------
 
