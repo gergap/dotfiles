@@ -1,8 +1,15 @@
 #text/html;                      links %s; nametemplate=%s.html
 text/html;                      chromium %s &; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal
 text/html;                      elinks -dump -dump-color-mode 3 %s; nametemplate=%s.html; copiousoutput
+text/x-patch;                   vim %s; needsterminal
+text/x-diff;  cat %s | colordiff; copiousoutput
+text/x-patch; cat %s | colordiff; copiousoutput
+
 image/jpeg; shotwell %s; test=test -n "$DISPLAY"
 image/jpg; shotwell %s; test=test -n "$DISPLAY"
 image/pjpeg; shotwell %s; test=test -n "$DISPLAY"
 image/png; shotwell %s; test=test -n "$DISPLAY"
 
+auto_view text/x-diff
+auto_view text/x-patch
+set allow_ansi
