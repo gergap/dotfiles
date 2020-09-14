@@ -1,0 +1,27 @@
+# load solarized colors
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
+
+# current row
+color indicator black cyan
+
+# some highlight in the message index
+#               fgcolor     bgcolor     flags
+color index     black       default     ~D  # deleted
+color index     default     yellow      ~T  # tagged
+color index     default     red         ~F  # flagged
+color index     yellow      blue        ~v  # collapsed thread
+color index     default     magenta     ~k  # GPG
+color index     default     green       ~N  # new
+
+# diff highlighting in mails, useful for git patches
+color body cyan default "^diff \-.*"
+color body cyan default "^index [a-f0-9].*"
+color body cyan default "^\-\-\- .*"
+color body cyan default "^[\+]{3} .*"
+color body green default "^[\+][^\+]+.*"
+color body red  default "^\-[^\-]+.*"
+color body brightblue default "^@@ .*"
+
