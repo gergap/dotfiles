@@ -12,11 +12,13 @@ set mbox_type = Maildir
 set folder      = "~/Mail/gmx"
 set spoolfile   = "~/Mail/gmx/INBOX"
 set record      = "~/Mail/gmx/Sent"
-set postponed   = "~/Mail/gmx/Drafts"
-set trash       = "~/Mail/gmx/Trash"
-unset header_cache
-unset message_cachedir
+set postponed   = "~/Mail/gmx/Entwürfe"
+set trash       = "~/Mail/gmx/Gelöscht"
+#unset header_cache
+#unset message_cachedir
 
 # Update mailboxes for sidebar
 unmailboxes *
+unvirtual-mailboxes *
 mailboxes =INBOX =Gesendet =Entwürfe =Spamverdacht =Gelöscht =coreboot =INBOX/patreon =Archive
+
