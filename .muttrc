@@ -61,12 +61,12 @@ macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
 macro index,pager \co "<pipe-message> urlscan -c -d -H -s<Enter>" "call urlscan to extract URLs out of a message"
 macro attach,compose \co "<pipe-entry> urlscan -c -d -H -s<Enter>" "call urlscan to extract URLs out of a message"
 
-macro index <F8> \
-      "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
-      "search mail (using notmuch)"
-macro index <F9> \
-      "<enter-command>unset wait_key<enter><pipe-message>~/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
-      "search and reconstruct owning thread (using notmuch)"
+#macro index <F8> \
+#      "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+#      "search mail (using notmuch)"
+#macro index <F9> \
+#      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+#      "search and reconstruct owning thread (using notmuch)"
 
 # load passwords
 source "gpg -d ~/.mutt/passwords.gpg |"
@@ -119,4 +119,5 @@ source ~/.mutt/colors
 set nm_default_uri = "notmuch:///home/gergap/Mail"
 set virtual_spoolfile = yes
 #set nm_hidden_tags = "inbox,unread,draft,flagged,passed,replied,signed,encrypted,attachment"
+source /etc/Muttrc.d/notmuch-mutt.rc
 
