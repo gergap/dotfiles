@@ -88,42 +88,23 @@ bind pager <up> previous-line
 bind pager <down> next-line
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
-
-### Real IMAP accounts (mutt is handling this)
-# default account 
-#source ~/.mutt/account.gmx
-#folder-hook $folder 'source ~/.mutt/account.gmx'
-#source ~/.mutt/account.ascolab
-#folder-hook $folder 'source ~/.mutt/account.ascolab'
-## macro for switching accounts
-#macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.gmx<enter><change-folder>!<enter>'
-#macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.ascolab<enter><change-folder>!<enter>'
-## map G to fetch IMAP instead POP
-#bind index G imap-fetch-mail
-## Don't wait to enter mailbox manually
-#unset imap_passive
-## Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
-#set imap_check_subscribed
-
 ### Local mirros (using mbsync)
 # default account 
 source ~/.mutt/account.local.gmx
-folder-hook $folder 'source ~/.mutt/account.local.gmx'
+source ~/.mutt/account.local.ascolab_admin
 source ~/.mutt/account.local.ascolab
-folder-hook $folder 'source ~/.mutt/account.local.ascolab'
 # macro for switching accounts
-macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.gmx<enter><change-folder>!<enter><check-stats>'
-macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab<enter><change-folder>!<enter><check-stats>'
-#macro index <f2> '<change-folder>~/Mail/gmx/INBOX<enter>'
-#macro index <f3> '<change-folder>~/Mail/ascolab/INBOX<enter>'
+macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.gmx<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab_admin<enter><change-folder>!<enter>'
 
 # Reduce polling frequency to a sane level
 set mail_check=60
 # And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
 set timeout=10
 # keep a cache of headers for faster loading (1.5.9+?)
-#set header_cache="~/.mutt/cache/headers"
-#set message_cachedir = "~/.mutt/cache/bodies"
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
 # Display download progress every 5K
 set net_inc=5"
@@ -153,6 +134,14 @@ macro attach W <save-entry><kill-line>/home/gergap/attachments/
 macro attach C <save-entry><kill-line>/home/gergap/.calcurse/import/<enter>
 
 source ~/.mutt/sidebar
+set mail_check_stats = yes
 
 color indicator black cyan
+
+# load solarized colors
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+
+set nm_default_uri = "notmuch:///home/gergap/Mail"
+set virtual_spoolfile = yes
+#set nm_hidden_tags = "inbox,unread,draft,flagged,passed,replied,signed,encrypted,attachment"
 
