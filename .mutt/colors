@@ -15,11 +15,11 @@ color index     white       default     .*
 # some highlight in the message index
 #               fgcolor     bgcolor     flags
 color index     black       default     ~D  # deleted
-color index     default     yellow      ~T  # tagged
 color index     default     red         ~F  # flagged
 color index     yellow      blue        ~v  # collapsed thread
 color index     default     magenta     ~k  # GPG
 color index     default     green       ~N  # new
+color index     default     yellow      ~T  # tagged
 
 ## diff highlighting in mails, useful for git patches
 color body white    default ".*"
