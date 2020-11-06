@@ -1,20 +1,25 @@
-# This file is based on the example from 
-# https://github.com/Valloric/ycmd/blob/master/cpp/ycm/.ycm_extra_conf.py
+# Copyright (C) 2014 Google Inc.
 #
-# Modified by: Gerhard Gappmeier
+# This file is part of ycmd.
 #
-# This version detects the top level git folder and sets the
-# compilation_database_folder automatically. So no further project specific
-# confguration is necessary. It works with all CMake based projects which
-# are maintained using Git. This applies to all the projects in my company
-# as well as many Open Source projects.
+# ycmd is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-# This file assumes the build directory is ${PROJECT_ROOT}/bld which fits
-# to my 'mk' script. See https://github.com/gergap/mk for more information.
+# ycmd is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with ycmd.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import ycm_core
 import subprocess
+import logging
+my_logger = logging.getLogger('my_logger')
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -22,74 +27,38 @@ import subprocess
 flags = [
 '-Wall',
 '-Wextra',
-#'-Werror',
-'-I/usr/share/qt4'
+'-Werror',
+'-I.',
+'-Iinclude',
 ]
-
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
 # more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
 #
-# You can get CMake to generate this file for you by adding:
-#   set( CMAKE_EXPORT_COMPILE_COMMANDS 1 )
-# to your CMakeLists.txt file.
-#
 # Most projects will NOT need to set this to anything; you can just change the
-# 'flags' list of compilation flags. Notice that YCM itself uses that approach.
-compilation_database_folder = ''
+# 'flags' list of compilation flags.
+compilation_database_folder = '/home/gergap/work/embeddedstack/bld/'
+#database = ycm_core.CompilationDatabase( compilation_database_folder )
 
 try:
   # detect git project root
   gitroot = subprocess.check_output('git rev-parse --show-toplevel'.split()).strip().decode("utf-8")
   # CMake build folder contains the compile_commands.json file
   compilation_database_folder = gitroot + '/bld'
+  my_logger.info("*** found complilation database: "+compilation_database_folder)
 except:
   # hardcoded fallback if we are not inside a git repo
   compilation_database_folder = '/path/to/your/project'
-
+  my_logger.info("*** use fallback complilation database: "+compilation_database_folder)
 
 if os.path.exists( compilation_database_folder ):
-  try:
     database = ycm_core.CompilationDatabase( compilation_database_folder.encode("utf-8") )
-  except Exception,e:
-    database = None
-else:
-  database = None
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
 
 def DirectoryOfThisScript():
   return os.path.dirname( os.path.abspath( __file__ ) )
-
-
-def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
-  if not working_directory:
-    return list( flags )
-  new_flags = []
-  make_next_absolute = False
-  path_flags = [ '-isystem', '-I', '-iquote', '--sysroot=' ]
-  for flag in flags:
-    new_flag = flag
-
-    if make_next_absolute:
-      make_next_absolute = False
-      if not flag.startswith( '/' ):
-        new_flag = os.path.join( working_directory, flag )
-
-    for path_flag in path_flags:
-      if flag == path_flag:
-        make_next_absolute = True
-        break
-
-      if flag.startswith( path_flag ):
-        path = flag[ len( path_flag ): ]
-        new_flag = path_flag + os.path.join( working_directory, path )
-        break
-
-    if new_flag:
-      new_flags.append( new_flag )
-  return new_flags
 
 
 def IsHeaderFile( filename ):
@@ -115,30 +84,25 @@ def GetCompilationInfoForFile( filename ):
   return database.GetCompilationInfoForFile( filename )
 
 
-def FlagsForFile( filename, **kwargs ):
-  if database:
-    # Bear in mind that compilation_info.compiler_flags_ does NOT return a
-    # python list, but a "list-like" StringVec object
-    compilation_info = GetCompilationInfoForFile( filename )
-    if not compilation_info:
-      return None
+# This is the entry point; this function is called by ycmd to produce flags for
+# a file.
+def Settings( **kwargs ):
+  my_logger.info("*** YCM is loading Settings")
+  if not database:
+    my_logger.warn("*** no database available, returning hardcoded flags")
+    return {
+      'flags': flags,
+      'include_paths_relative_to_dir': DirectoryOfThisScript()
+    }
+  filename = kwargs[ 'filename' ]
+  compilation_info = GetCompilationInfoForFile( filename )
+  if not compilation_info:
+    my_logger.error("*** no compilation info")
+    return None
 
-    final_flags = MakeRelativePathsInFlagsAbsolute(
-      compilation_info.compiler_flags_,
-      compilation_info.compiler_working_dir_ )
-
-    # NOTE: This is just for YouCompleteMe; it's highly likely that your project
-    # does NOT need to remove the stdlib flag. DO NOT USE THIS IN YOUR
-    # ycm_extra_conf IF YOU'RE NOT 100% SURE YOU NEED IT.
-    try:
-      final_flags.remove( '-stdlib=libc++' )
-    except ValueError:
-      pass
-  else:
-    relative_to = DirectoryOfThisScript()
-    final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )
-
+  # Bear in mind that compilation_info.compiler_flags_ does NOT return a
+  # python list, but a "list-like" StringVec object.
   return {
-    'flags': final_flags,
-    'do_cache': True
+    'flags': list( compilation_info.compiler_flags_ ),
+    'include_paths_relative_to_dir': compilation_info.compiler_working_dir_
   }
