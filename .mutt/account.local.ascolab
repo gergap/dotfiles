@@ -24,29 +24,10 @@ unvirtual-mailboxes *
 mailboxes =INBOX =Drafts =Spam =Trash =Rechnungen =Sunny =Telekom =Steuer =Patches
 
 # virtual mailbox using notmuch
-#virtual-mailboxes "My INBOX" "notmuch://?query=tag:inbox"
 virtual-mailboxes "Redmine"  "notmuch://?query=tag:redmine"
 virtual-mailboxes "Phabricator"  "notmuch://?query=tag:phabricator"
 virtual-mailboxes "Support"  "notmuch://?query=tag:support"
 virtual-mailboxes "Kropatz"  "notmuch://?query=tag:kropatz"
-#virtual-mailboxes "Redmine"  "notmuch://?query=from:redmine.ascolab.com"
-#virtual-mailboxes "Phabricator"  "notmuch://?query=from:redmine.ascolab.com"
 
-#unmailboxes *
-#virtual-mailboxes "INBOX" "notmuch://?query=tag:inbox"
-#virtual-mailboxes "ToDo" "notmuch://?query=tag:todo"
-#virtual-mailboxes "Unread E-Mails" "notmuch://?query=tag:unread"
-#virtual-mailboxes "Phabricator" "notmuch://?query=tag:phabricator"
-#virtual-mailboxes "Redmine" "notmuch://?query=tag:redmine"
-#virtual-mailboxes "Firma" "notmuch://?query=tag:ascolab"
-#virtual-mailboxes "Spam" "notmuch://?query=tag:spam"
-#virtual-mailboxes "Sent Folder" "notmuch://?query=folder:.Sent"
-#virtual-mailboxes "Sent Tag" "notmuch://?query=tag:sent"
-#virtual-mailboxes "E-Mails mit PDF" "notmuch://?query=attachment:\.pdf"
-#virtual-mailboxes "E-Mails mit JPG" "notmuch://?query=attachment:\.jpg%20or%20attachment:\.png"
-#virtual-mailboxes "E-Mails von heute" "notmuch://?query=date:today"
-#virtual-mailboxes "E-Mails von gestern" "notmuch://?query=date:yesterday"
-#virtual-mailboxes "E-Mails von dieser Woche" "notmuch://?query=date:week.."
-#virtual-mailboxes "E-Mails von diesem Monat" "notmuch://?query=date:month.."
-#virtual-mailboxes "E-Mails von Freunden" "notmuch://?query=tag:Freunde"
-#virtual-mailboxes "E-Mails von Familie" "notmuch://?query=tag:Familie"
+set virtual_spoolfile=yes
+set spoolfile   = "~/Mail/ascolab/INBOX"
