@@ -30,3 +30,7 @@ sys.path.insert(0, '/home/gergap/work/embeddedstack/gdb/prettyprinter')
 from opcua import register_uaprinters
 register_uaprinters()
 end
+
+# sources are references like ../crypto/..., so we need to add one more folder to the search path
+dir ~/work/sources/openssl-1.1.1h/include
+
