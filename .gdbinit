@@ -26,7 +26,7 @@ end
 # embeddedstack
 python
 import sys
-sys.path.insert(0, '/home/gergap/work/embeddedstack-master/gdb/prettyprinter')
+sys.path.insert(0, '/home/gergap/work/embeddedstack/gdb/prettyprinter')
 from opcua import register_uaprinters
 register_uaprinters()
 end
