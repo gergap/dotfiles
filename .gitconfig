@@ -33,7 +33,7 @@
     template = ~/work/repotools/commit-template
 [push]
     default = simple
-    recurseSubmodules = check
+#    recurseSubmodules = check
 [init]
     templatedir = ~/.git_template
 [pull]
