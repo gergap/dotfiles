@@ -34,3 +34,8 @@ end
 # sources are references like ../crypto/..., so we need to add one more folder to the search path
 dir ~/work/sources/openssl-1.1.1h/include
 
+define xxd
+dump binary memory dump.bin $arg0 $arg0+$arg1
+shell hexdump -C dump.bin
+end
+
