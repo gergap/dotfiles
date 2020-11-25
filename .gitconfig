@@ -29,6 +29,8 @@
     ctags = !~/.git_template/hooks/ctags
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     st = status -uno
+    # cleans everything recursively to get a fresh checkout again (dangerous)
+    superclean = !git reset --hard && git submodule foreach git reset --hard && git clean -fdx && git submodule foreach git clean -fdx
 [commit]
     template = ~/work/repotools/commit-template
 [push]
