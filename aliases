@@ -26,6 +26,6 @@ alias memcheck='valgrind --leak-check=full --show-leak-kinds=all'
 
 # cert dump
 alias certdump='openssl x509 -noout -text -in'
-alias derdump='openssl x509 -noout -text -inform -in'
+alias derdump='openssl x509 -noout -text -inform der -in'
 
 alias perldebug='perl -d:ptkdb'
