@@ -1,34 +1,38 @@
-set arrowstyle=short
 set autosourcereload
 set ignorecase
 set tabstop=4
 set winminheight=2
 set wrapscan
+set incsearch
+set hlsearch
+set eld=longarrow # shortarrow, longarrow, highlight, block
+set sld=highlight # shortarrow, longarrow, highlight, block
 
 map <F5>  :continue<CR>
 map <F10> :next<CR>
 map <F11> :step<CR>
-map <F12> :until<CR>
-map <S-F12> :finish<CR>
+map <F12> :finish<CR>
 
-map c :continue<CR>
-map n :next<CR>
-map s :step<CR>
-map u :until<CR>
-map f :finish<CR>
+hi Statement ctermfg=Cyan
+hi Type      ctermfg=Green
+hi Constant  ctermfg=Yellow
+hi Comment   ctermfg=Gray         term=standout
+hi PreProc   ctermfg=DarkMagenta
+hi Normal    ctermfg=White
 
-hi Statement ctermfg=5
-hi Type      ctermfg=14
-hi Constant  ctermfg=3
-hi Comment   ctermfg=8
-hi PreProc   ctermfg=5
-hi Normal    ctermfg=7
-
-hi StatusLine         ctermfg=7  ctermbg=8
-hi IncSearch          ctermfg=3
-hi Arrow              ctermfg=2
-hi LineHighlight      ctermfg=10 ctermbg=0
-hi Breakpoint         ctermfg=7  ctermbg=6
-hi DisabledBreakpoint ctermfg=6  ctermbg=8
-hi SelectedLineNr     ctermfg=3
-hi Logo               ctermfg=3
+hi StatusLine               ctermfg=Black     ctermbg=Yellow
+hi Search                   ctermfg=White     ctermbg=Green
+hi IncSearch                ctermfg=White     ctermbg=Red
+hi SelectedLineArrow        ctermfg=White     ctermbg=Black
+hi ExecutingLineArrow       ctermfg=Green     ctermbg=Black
+hi SelectedLineHighlight    ctermfg=Black     ctermbg=LightGray
+hi ExecutingLineHighlight   ctermfg=White     ctermbg=Green
+hi SelectedLineBlock        ctermfg=White     ctermbg=Black
+hi ExecutingLineBlock       ctermfg=White     ctermbg=Green
+hi Breakpoint               ctermfg=Red       ctermbg=Black
+hi DisabledBreakpoint       ctermfg=White     ctermbg=Black
+hi SelectedLineNr           ctermfg=White     ctermbg=Black
+hi ExecutingLineNr          ctermfg=Green     ctermbg=Black
+hi ScrollModeStatus         ctermfg=White     ctermbg=Black
+hi Logo                     ctermfg=Yellow #    ctermbg=Black
+hi Mark                     ctermfg=Red     ctermbg=Black
