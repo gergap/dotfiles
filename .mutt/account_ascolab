@@ -1,0 +1,14 @@
+set imap_user    = "gerhard.gappmeier@ascolab.com"
+set imap_pass    = `pass show E-Mail/gerhard.gappmeier@ascolab.com`
+set smtp_url     = "smtp://gerhard.gappmeier@smtp.ascolab.com:587"
+set smtp_pass    = `pass show E-Mail/gerhard.gappmeier@ascolab.com`
+set from         = "gerhard.gappmeier@ascolab.com"
+set realname     = "Gerhard Gappmeier"
+set folder       = "imaps://imap.ascolab.com:993"
+set spoolfile    = "+INBOX"
+set postponed    = "=Drafts"
+set record       = "=Sent"
+set header_cache = ~/.mutt/com.ascolab.gappmeier/cache/headers
+set message_cachedir = ~/.mutt/com.ascolab.gappmeier/cache/bodies
+
+

@@ -1,0 +1,14 @@
+set imap_user    = "gappy1502@gmx.net"
+set imap_pass    = "jojo0611"
+set imap_pass    = `pass show E-Mail/gappy1502@gmx.net`
+set smtp_url     = "smtp://gerhard.gappmeier@smtp.ascolab.com:587"
+set smtp_pass    = `pass show E-Mail/gappy1502@gmx.net`
+set from         = "gappy1502@gmx.net"
+set realname     = "Gerhard Gappmeier"
+set folder       = "imaps://imap.gmx.net:993"
+set spoolfile    = "+INBOX"
+set postponed    = "+INBOX/Drafts"
+set record       = "+INBOX/Sent"
+set header_cache = ~/.mutt/net.gmx.gappy1502/cache/headers
+set message_cachedir = ~/.mutt/net.gmx.gappy1502/cache/bodies
+

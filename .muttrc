@@ -1,22 +1,15 @@
 # Basic Options
 set realname     = "Gerhard Gappmeier"
-#set from         = "gerhard.gappmeier@ascolab.com"
-set from         = "gappy1502@gmx.net"
+set from         = "gerhard.gappmeier@ascolab.com"
 set use_from     = yes
 set edit_headers = yes
 set fast_reply   = yes
 #set editor       = "vim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
 set editor       = "vim -c 'set spell spelllang=de,en' -c 'startinsert' -c 'set tw=80 et' -c 'set wrap' '+/^$'"
+set signature    = "~/.mutt/signature"
 set ispell       = "aspell -e -c"
 set attribution  = "On %d, %n wrote:"
 set forward_format = "[%a: %s]"
-# by default mutt marks unread mails as old when exiting, I don't like this as this
-# could lead to missing unread mails
-set mark_old     = no
-# disable artifical delay of 1s one switching mailboxes
-set sleep_time   = 0
-# disable "press key" after <shell-escape> and <pipe-message>
-set wait_key     = no
 
 # Set up preview pane for messages
 set pager_index_lines = 10 	# number of index lines to show
@@ -24,14 +17,15 @@ set pager_context     = 3     # number of context lines to show
 set pager_stop        = yes   # don't go to next message automatically
 set menu_scroll       = yes   # scroll in menus
 set tilde             = yes   # show tildes like in vim
-set markers           = yes 	# no ugly plus signs
+set markers           = no 	# no ugly plus signs
 
 # Look and feel -----------------------------------------------------------------
-set date_format     = '%d.%m.%Y %H:%M:%S'
-set index_format    = '%4C [%Z] %D %-25.25L (%?l?%4l&%4c?) %s'	# Customize the messaage index display
+#set index_format    = '%4C [%Z] %{nicedate %s|} %-25.25L (%?l?%4l&%4c?) %s'	# Customize the messaage index display
+set index_format    = '%4C [%Z] %?X?📎&  ? %{%a %d.%m.%Y %T} %-25.25L (%?l?%4l&%4c?) %?H?[%H] ? %s'	# Customize the messaage index display
+#set index_format    = 'nicedate %s "%d.%m.%Y" | %s'	# Customize the messaage index display
 set sort_browser    = alpha											# Sort entries in the file browser
 set sort_aux        = reverse-last-date-received					# Sort mails in reverse date order (threads)
-#set sort            = reverse-date-received							# Sort with the newest at the top
+set sort            = reverse-date-received							# Sort with the newest at the top
 set sort            = threads							            # Sort by threads
 set uncollapse_jump = yes											# Don't jump to next unread message when a thread is collapsed
 set strict_threads  = yes
@@ -41,7 +35,7 @@ auto_view text/html
 # prefer text/plain over text/html if both is available
 alternative_order text/plain text/html
 #set new_mail_command="notify-send --icon='/home/gergap/Pictures/neomutt.png' 'New Email' '%n new messages, %u unread.' &"
-#set new_mail_command="/home/gergap/.mutt/newmailnotify.sh '%n new messages, %u unread.' &"
+set new_mail_command="/home/gergap/.mutt/newmailnotify.sh '%n new messages, %u unread.' &"
 
 # configure charset
 #set charset="utf-8"
@@ -51,60 +45,130 @@ alternative_order text/plain text/html
 
 # configure muttprint
 # see http://www.linux-community.de/Internal/Artikel/Print-Artikel/LinuxUser/2004/09/muttprint
-#set print_command = "muttprint"
-set print_command='set -e; f=`mktemp`; muttprint -P A4 -p TO_FILE:"$f"; evince "$f"; rm "$f"'
+set print_command = "muttprint"
 set print         = yes
 set print_split
 macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>"
 macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
-#macro index $ "<sync-mailbox><shell-escape>mbsync -a<enter>"
-macro index,pager \co "<pipe-message> urlscan -c -d -H -s<Enter>" "call urlscan to extract URLs out of a message"
-macro attach,compose \co "<pipe-entry> urlscan -c -d -H -s<Enter>" "call urlscan to extract URLs out of a message"
-
-#macro index <F8> \
-#      "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
-#      "search mail (using notmuch)"
-#macro index <F9> \
-#      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
-#      "search and reconstruct owning thread (using notmuch)"
-
-macro index H "<change-folder>~/Mail/ascolab/INBOX<enter>"
 
 # load passwords
 source "gpg -d ~/.mutt/passwords.gpg |"
 # load PGP Settings
 source ~/.mutt/pgp.muttrc
+# load solarized colors
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
 # aliases
 source ~/.mutt/aliases
 
-# some useful keybindings
-bind index - collapse-thread
-bind index _ collapse-all
-# use the usual keys for scrolling in the pager
+# Allow Mutt to open new imap connection automatically.
+#unset imap_passive
+set imap_passive
+
+# Automatically poll subscribed mailboxes for new mail
+#set imap_check_subscribed = yes
+#set imap_list_subscribed  = yes
+
+# Keep IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+# How often to check for new mail (time in seconds).
+set mail_check = 60
+
+# Use IMAP IDLE for pushing mail
+set imap_idle = yes
+set timeout=1 # GUI update requency
+
+# SMTP Settings
+#set sendmail="/usr/sbin/ssmtp"
+#set smtp_url="smtp://gerhard.gappmeier@smtp.ascolab.com:587"
+#set smtp_pass = "4HLugHnA"
+#set imap_pass = "4HLugHnA"
+
+#set my_pw_ascolab=`gnome-keyring-query get ascolab`
+#set my_pw_gmx=`gnome-keyring-query get gmx`
+#account-hook ascolab.com 'set imap_user=gerhard.gappmeier imap_pass=$my_pw_ascolab'
+#account-hook gmx.net 'set imap_user=gappy1502@gmx.net imap_pass=$my_pw_gmx'
+
+# Folder hooks
+folder-hook 'account.com.gmail.foo' 'source ~/.mutt/account.com.gmail.foo'
+folder-hook 'account.com.gmail.bar' 'source ~/.mutt/account.com.gmail.bar'
+
+# Default account
+source ~/.mutt/account_ascolab
+
+# Macros for switching accounts
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account_ascolab<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account_gmx<enter><change-folder>!<enter>'
+macro pager l "<pipe-message> urlscan<enter>" 'Follow links with urlview'
+macro index gs  "<change-folder> =Sent<enter>"  "go to Sent Items"
+macro index gh  "<change-folder> =INBOX<enter>"  "go to INBOX"
+
+# Fetch mail shortcut
+bind index G imap-fetch-mail
+
+# IMAP Config
+#set spoolfile="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
+#set folder="imaps://gerhard.gappmeier@imap.ascolab.com/INBOX"
+#set record="=Sent"
+#set postponed="=Drafts"
+#set trash="=Trash
+## activate TLS if available on the server
+#set ssl_starttls=yes
+## always use SSL when connecting to a server
+#set ssl_force_tls=yes
+## Don't wait to enter mailbox manually
+#unset imap_passive
+## Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+#set imap_check_subscribed
+## Reduce polling frequency to a sane level
+#set mail_check=60
+## And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+#set timeout=10
+## keep a cache of headers for faster loading (1.5.9+?)
+#set header_cache="~/.mutt/cache/headers"
+#set message_cachedir = "~/.mutt/cache/bodies"
+#set certificate_file = "~/.mutt/certificates"
+## Display download progress every 5K
+#set net_inc=5"
+#
+## GMX account
+#set from=gappy1502@gmx.net
+#set hostname="gmx.net"
+#set folder="imaps://gappy1502@imap.gmx.net"
+#set spoolfile="imaps://gappy1502@imap.gmx.net/INBOX"
+#set record="=Sent"
+#set postponed="=Drafts"
+#set trash="=Trash
+#set smtp_url="smtp://gappy1502@smtp.gmx.net:587"
+
+# diff highlighting in mails, useful for git patches
+color body green default "^diff \-.*"
+color body green default "^index [a-f0-9].*"
+color body green default "^\-\-\- .*"
+color body green default "^[\+]{3} .*"
+color body cyan default "^[\+][^\+]+.*"
+color body red  default "^\-[^\-]+.*"
+color body brightblue default "^@@ .*"
+
+# IMAP: offlineimap
+#set folder = "~/Mail"
+#source ~/.mutt/mailboxes
+#set spoolfile = "+ascolab/INBOX"
+#set record = "+ascolab/INBOX/Sent"
+#set postponed = "+ascolab/Drafts"
+#set copy = yes
+## mail poll requency
+#set timeout=10
+## add archive mailbox
+#mailboxes +archive +archive/2007 +archive/2008 +archive/2009 +archive/2010 +archive/2011 +archive/2012 +archive/2013 +archive/2014 +archive/2015 +archive/2016 +archive/2017
+
+# map G to fetch IMAP instead POP
+bind index G imap-fetch-mail
 bind pager <up> previous-line
 bind pager <down> next-line
-macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
-
-### Local mirros (using mbsync)
-# default account 
-source ~/.mutt/account.local.gmx
-source ~/.mutt/account.local.ascolab_admin
-source ~/.mutt/account.local.ascolab
-# macro for switching accounts
-macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.gmx<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab<enter><change-folder>!<enter>'
-macro index <f4> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.local.ascolab_admin<enter><change-folder>!<enter>'
-
-# Reduce polling frequency to a sane level
-set mail_check=60
-# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
-set timeout=10
-# keep a cache of headers for faster loading (1.5.9+?)
-set header_cache="~/.mutt/cache/headers"
-set message_cachedir = "~/.mutt/cache/bodies"
-set certificate_file = "~/.mutt/certificates"
-# Display download progress every 5K
-set net_inc=5"
 
 # some macros for attchment saving
 # save attchment in default path with option to modify path
@@ -112,14 +176,7 @@ macro attach W <save-entry><kill-line>/home/gergap/attachments/
 # save attchament (ical file) to ~/calcurse
 macro attach C <save-entry><kill-line>/home/gergap/.calcurse/import/<enter>
 
-source ~/.mutt/sidebar
-set mail_check_stats = yes
-
-source ~/.mutt/colors
-
-# not much
-set nm_default_uri = "notmuch:///home/gergap/Mail"
-set virtual_spoolfile = yes
-#set nm_hidden_tags = "inbox,unread,draft,flagged,passed,replied,signed,encrypted,attachment"
-source /etc/Muttrc.d/notmuch-mutt.rc
+# mailing lists
+subscribe cmake
+subscribe openssl-users
 

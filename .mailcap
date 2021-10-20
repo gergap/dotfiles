@@ -5,6 +5,9 @@ text/x-patch;                   vim %s; needsterminal
 text/x-diff;  cat %s | colordiff; copiousoutput
 text/x-patch; cat %s | colordiff; copiousoutput
 
+text/calendar; mutt-ical.py -i -e "gerhard.gappmeier@asolab.com" %s
+application/ics; mutt-ical.py -i -e "gerhard.gappmeier@asolab.com" %s
+
 image/jpeg; shotwell %s; test=test -n "$DISPLAY"
 image/jpg; shotwell %s; test=test -n "$DISPLAY"
 image/pjpeg; shotwell %s; test=test -n "$DISPLAY"
