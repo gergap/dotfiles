@@ -87,10 +87,10 @@ endif
 let s:aliases_file = expand(s:aliases_file)
 if filereadable(s:aliases_file)
     call Read_Aliases()
+    let s:aliases_file = expand("~/.mutt/aliases")
+    call Read_Aliases()
     set completefunc=Complete_Emails
-    imap @@ <C-X><C-U>
-
+    inoremap @ <C-X><C-U>
 else
     echo "could not read aliases file: " s:aliases_file
-
 endif
